@@ -97,11 +97,11 @@ def collect_item(player, collectible):
     player.inventory.append(collectible)
 
 def draw_inventory(player):
-    rl.draw_rectangle(10, 110, 220, 200, rl.Color(0, 0, 0, 200))  # Draw a semi-transparent background
+    rl.draw_rectangle(10, 110, 220, 200, rl.Color(0, 0, 0, 200))  
 
-    rl.draw_text("Inventory", 20, 130, 20, (0, 255, 0, 255))  # Draw the title of the inventory
+    rl.draw_text("Inventory", 20, 130, 20, (0, 255, 0, 255)) 
 
     item_y = 160
     for item in player.inventory:
-        rl.draw_text(str(item), 40, item_y, 20, rl.RAYWHITE)  # Draw each item in the inventory
+        rl.draw_text(str(item), 40, item_y, 20, rl.RAYWHITE)  
         item_y += 30
