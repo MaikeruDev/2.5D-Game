@@ -37,7 +37,7 @@ To play this game, you'll need Python and the Raylib library installed on your m
 2. Install the required dependencies:
 
    ```sh
-   pip install raylibpy
+   pip install raylib-py
    ```
 
 3. Run the game:
