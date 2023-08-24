@@ -1,6 +1,6 @@
 import config
 import raylibpy as rl
-import math
+import math  
 
 class Raycaster:
     def __init__(self, player):
@@ -55,9 +55,10 @@ class Raycaster:
                 if rayDirY > 0:
                     color = (0, 0, 255, 255)  # North wall (for instance, blue)
                 else:
-                    color = (255, 255, 0, 255)  # South wall (for instance, yellow)
+                    color = (255, 0, 255, 255)  # South wall (for instance, yellow)
                 
             lineHeight = int(config.SCREEN_HEIGHT / perpWallDist)
             drawStart = -lineHeight // 2 + config.SCREEN_HEIGHT // 2
             drawEnd = lineHeight // 2 + config.SCREEN_HEIGHT // 2
             rl.draw_line(x, drawStart, x, drawEnd, color)
+  
