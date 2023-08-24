@@ -29,12 +29,12 @@ def main():
         player.handle_input(MAP)
         raycaster.cast_rays()
 
-        rl.draw_text("Mini Map", 10, 110, 20, rl.DARKGRAY)
+        rl.draw_text("Mini Map", 10, 170, 20, rl.DARKGRAY)
         draw_mini_map(player)
         rl.draw_fps(config.SCREEN_WIDTH - 100, 10) 
 
         rl.begin_drawing()
-        rl.clear_background(rl.RAYWHITE) 
+        rl.clear_background(rl.RAYWHITE)  
 
         player.draw()
 

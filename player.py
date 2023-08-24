@@ -27,7 +27,7 @@ class Player:
         if map_x < 0 or map_x >= map_width or map_y < 0 or map_y >= map_height:
             return False
 
-        return world_map[map_y][map_x] == 0
+        return world_map[map_y][map_x] in [0, 2]
 
     def handle_input(self, world_map):
         if self.show_inventory: 

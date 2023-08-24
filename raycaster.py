@@ -5,6 +5,7 @@ import math
 class Raycaster:
     def __init__(self, player):
         self.player = player
+        self.wall_texture = rl.load_texture("door.png")
 
     def cast_rays(self):
         for x in range(0, config.SCREEN_WIDTH, config.RAY_WIDTH):
@@ -56,18 +57,31 @@ class Raycaster:
                         color = (0, 0, 255, 255)  # North wall (for instance, blue)
                     else:
                         color = (255, 0, 255, 255)  # South wall (for instance, yellow)
-                    
+                
                 lineHeight = int(config.SCREEN_HEIGHT / perpWallDist)
                 drawStart = -lineHeight // 2 + config.SCREEN_HEIGHT // 2
                 drawEnd = lineHeight // 2 + config.SCREEN_HEIGHT // 2
                 rl.draw_line(x, drawStart, x, drawEnd, color)
-            elif hit == 2:  # Door or other entity
-                # Handle rendering for a door or other entity.
-                # This could involve changing the color, texture, or any other visual indication
-                # For simplicity, I'll just change the color.
-                color = (255, 255, 0, 255)  # A yellow door, for instance
+            elif hit == 2:  
+                if side == 0:
+                    collisionX = mapX + (1 - stepX) / 2
+                    collisionY = self.player.y + (collisionX - self.player.x) * rayDirY / rayDirX
+                    perpWallDist = (collisionX - self.player.x) / rayDirX 
+                    tex_x = int(collisionY * self.wall_texture.width)  # For east/west walls
+                else:
+                    collisionY = mapY + (1 - stepY) / 2
+                    collisionX = self.player.x + (collisionY - self.player.y) * rayDirX / rayDirY
+                    perpWallDist = (collisionY - self.player.y) / rayDirY 
+                    tex_x = int(collisionX * self.wall_texture.width)  # For north/south walls
+
                 lineHeight = int(config.SCREEN_HEIGHT / perpWallDist)
                 drawStart = -lineHeight // 2 + config.SCREEN_HEIGHT // 2
                 drawEnd = lineHeight // 2 + config.SCREEN_HEIGHT // 2
-                rl.draw_line(x, drawStart, x, drawEnd, color)
-  
+
+                texture_rec = rl.Rectangle(tex_x, 0, config.RAY_WIDTH, self.wall_texture.height)
+                dest_rec = rl.Rectangle(x, drawStart, config.RAY_WIDTH, lineHeight)
+
+                rl.draw_texture_pro(self.wall_texture, texture_rec, dest_rec, rl.Vector2(0, 0), 0, rl.WHITE)
+
+
+ 
