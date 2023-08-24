@@ -53,6 +53,8 @@ To play this game, you'll need Python and the Raylib library installed on your m
 - **A:** Turn left
 - **D:** Turn right
 
+- **I:** Open Inventory
+
 Feel free to customize the controls or add more features as the game evolves.
 
 ## Contributing
