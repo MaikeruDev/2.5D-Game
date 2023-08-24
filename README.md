@@ -1,4 +1,4 @@
-# 1.5D Game - Dungeon Adventure Game
+# 2.5D Game - Dungeon Adventure Game
 
 ![Gameplay Screenshot](https://gcdnb.pbrd.co/images/avrm6KAn2FVE.png?o=1)
 
