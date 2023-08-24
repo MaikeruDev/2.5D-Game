@@ -3,13 +3,15 @@ from player import Player
 from raycaster import Raycaster
 import raylibpy as rl 
 from config import MAP
-from minimap import MiniMap
+from minimap import MiniMap 
+import raycaster
 
 def main():
     rl.init_window(config.SCREEN_WIDTH, config.SCREEN_HEIGHT, "Pixel Gallery")
     rl.set_target_fps(config.FPS) 
 
     player = Player(2, 2)
+
     raycaster = Raycaster(player)
     
     mini_map = MiniMap(player)
