@@ -38,27 +38,36 @@ class Raycaster:
                     side = 1
 
                 if config.MAP[mapY][mapX] > 0:
-                    hit = 1 
-
-            if side == 0:
-                collisionX = mapX + (1 - stepX) / 2
-                collisionY = self.player.y + (collisionX - self.player.x) * rayDirY / rayDirX
-                perpWallDist = (collisionX - self.player.x) / rayDirX 
-                if rayDirX > 0:
-                    color = (255, 0, 0, 255)  # East wall (for instance, red)
+                    hit = config.MAP[mapY][mapX] 
+            if hit == 1:
+                if side == 0:
+                    collisionX = mapX + (1 - stepX) / 2
+                    collisionY = self.player.y + (collisionX - self.player.x) * rayDirY / rayDirX
+                    perpWallDist = (collisionX - self.player.x) / rayDirX 
+                    if rayDirX > 0:
+                        color = (255, 0, 0, 255)  # East wall (for instance, red)
+                    else:
+                        color = (0, 255, 0, 255)  # West wall (for instance, green)
                 else:
-                    color = (0, 255, 0, 255)  # West wall (for instance, green)
-            else:
-                collisionY = mapY + (1 - stepY) / 2
-                collisionX = self.player.x + (collisionY - self.player.y) * rayDirX / rayDirY
-                perpWallDist = (collisionY - self.player.y) / rayDirY 
-                if rayDirY > 0:
-                    color = (0, 0, 255, 255)  # North wall (for instance, blue)
-                else:
-                    color = (255, 0, 255, 255)  # South wall (for instance, yellow)
-                
-            lineHeight = int(config.SCREEN_HEIGHT / perpWallDist)
-            drawStart = -lineHeight // 2 + config.SCREEN_HEIGHT // 2
-            drawEnd = lineHeight // 2 + config.SCREEN_HEIGHT // 2
-            rl.draw_line(x, drawStart, x, drawEnd, color)
+                    collisionY = mapY + (1 - stepY) / 2
+                    collisionX = self.player.x + (collisionY - self.player.y) * rayDirX / rayDirY
+                    perpWallDist = (collisionY - self.player.y) / rayDirY 
+                    if rayDirY > 0:
+                        color = (0, 0, 255, 255)  # North wall (for instance, blue)
+                    else:
+                        color = (255, 0, 255, 255)  # South wall (for instance, yellow)
+                    
+                lineHeight = int(config.SCREEN_HEIGHT / perpWallDist)
+                drawStart = -lineHeight // 2 + config.SCREEN_HEIGHT // 2
+                drawEnd = lineHeight // 2 + config.SCREEN_HEIGHT // 2
+                rl.draw_line(x, drawStart, x, drawEnd, color)
+            elif hit == 2:  # Door or other entity
+                # Handle rendering for a door or other entity.
+                # This could involve changing the color, texture, or any other visual indication
+                # For simplicity, I'll just change the color.
+                color = (255, 255, 0, 255)  # A yellow door, for instance
+                lineHeight = int(config.SCREEN_HEIGHT / perpWallDist)
+                drawStart = -lineHeight // 2 + config.SCREEN_HEIGHT // 2
+                drawEnd = lineHeight // 2 + config.SCREEN_HEIGHT // 2
+                rl.draw_line(x, drawStart, x, drawEnd, color)
   
